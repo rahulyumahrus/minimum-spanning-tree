@@ -29,3 +29,10 @@ Edge weights are required to be non-negative. This restriction is not fundamenta
 - A disconnected graph produces a minimum spanning forest rather than a single spanning tree.
 - Duplicate edges (same endpoints and weight) are automatically removed when a `Graph` is constructed.
 - Edges are immutable (`frozen=True`) so sorting remains stable and safe.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
